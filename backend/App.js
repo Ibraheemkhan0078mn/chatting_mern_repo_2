@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 app.use(cors({
-    origin: ["http://localhost:5173"],
+    origin: process.env.VITE_Frontend_Base_Url,
     credentials:true
 }))
 
@@ -37,6 +37,13 @@ app.use(cors({
 
 
 
+
+app.get("/",( req, res)=>{
+    res.send("Hello Friend! Please restart the app")
+})
+app.post("/",( req, res)=>{
+    res.send("Hello Friend! Please restart the app")
+})
 
 
 app.use("/api/userRoutes", UserRoutes)
