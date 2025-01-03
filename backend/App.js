@@ -18,7 +18,13 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 app.use(cors({
-    origin: "https://ikchattingapp.netlify.app",
+    origin: (origin, callback) => {
+    // If the origin is not provided (e.g., in server-to-server requests), allow it
+    if (!origin || origin === allowedOrigin) {
+      return callback(null, true); // Allow the request
+    }
+    return callback(null, false); // Reject the request
+  },
     credentials:true
 }))
 
