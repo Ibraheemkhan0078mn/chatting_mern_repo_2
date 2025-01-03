@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 app.use(cors({
-    origin:[ process.env.VITE_Frontend_Base_Url ,  "https://ikchattingapp.netlify.app"],
+    origin: process.env.VITE_Frontend_Base_Url ||  "https://ikchattingapp.netlify.app",
     credentials:true
 }))
 
